@@ -28,7 +28,7 @@ class TestGetLatestCPIResource(TestCase):
                     {'format': u'CSV', 'id': u'5b315ff0-55e9-4ba8-b88c-2d70093bfe9d'}
                 ]}
         ]
-        with patch('budgetportal.models.ckan') as ckan_mock:
+        with patch('budgetportal.datasets.ckan') as ckan_mock:
             ckan_mock.action.package_search.return_value = {
                 'results': results}
             cpi_year, cpi_resource_id = get_latest_cpi_resource()
@@ -46,7 +46,7 @@ class TestGetLatestCPIResource(TestCase):
                                'id': u'0c173948-9674-4ca9-aec6-f144bde5cc1e'}]},
         ]
 
-        with patch('budgetportal.models.ckan') as ckan_mock:
+        with patch('budgetportal.datasets.ckan') as ckan_mock:
             ckan_mock.action.package_search.return_value = {'results': results}
             with self.assertRaises(AssertionError):
                 cpi_year, cpi_resource_id = get_latest_cpi_resource()
